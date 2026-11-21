@@ -2047,13 +2047,7 @@ tr:hover td{background:rgba(255,255,255,.018)}
 <script>
 const SUPABASE_URL = 'https://eckbekxqipwdbrvqzjlv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVja2Jla3hxaXB3ZGJydnF6amx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2OTAyOTEsImV4cCI6MjEwNjI2NjI5MX0._85Yy-KUTpGMD-cAldTEc5qzwmV_lJ6DOvd06aSIJ5o';
-const ADMIN_EMAILS = new Set([
-  'washreaper@gmail.com',
-  'scorishagd@gmail.com',
-].map(e => e.toLowerCase()));
-
-const isAdminEmail = (email) =>
-  typeof email === 'string' && ADMIN_EMAILS.has(email.trim().toLowerCase());
+const ADMIN_EMAIL = 'washreaper@gmail.com';
 const MAX_PARTICIPANTS_PER_TOURNAMENT = 5;
 
 const sb = (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase)
@@ -2356,7 +2350,7 @@ let selectedApps = new Set();
 
 function t(key){ if(!key) return ''; const d = I18N[LANG] || I18N.ru; return d[key] || I18N.ru[key] || key; }
 function toast(msg, isError){ toastEl.textContent = msg; toastEl.classList.toggle('error', !!isError); toastEl.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3400); }
-function isAdmin(){ return user && user.email && user.email.trim().toLowerCase() === isAdminEmail(x).trim().toLowerCase(); }
+function isAdmin(){ return user && user.email && user.email.trim().toLowerCase() === admin_email.trim().toLowerCase(); }
 function canModerate(){ return isAdmin() || isModeratorFlag; }
 function hasPermission(perm) {
   if (isAdmin()) return true;
